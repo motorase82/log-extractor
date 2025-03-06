@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log File Data Extractor - Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Log File Data Extractor!</h1>
+        <p>Hello, guys! With this tool, you can easily extract the weekly Alliance Duel Points and Alliance player information for your alliance.</p>
+        <p>To extract the data, you will need to install the Last Fortress Windows Application. Follow these instructions to get started:</p>
+    </header>
+
+    <section class="instructions">
+        <h2>How to Retrieve the Log File</h2>
+        <ol>
+            <li>Go to <a href="https://last-fortress.net/" target="_blank">https://last-fortress.net/</a></li>
+            <li>Look for: <img src="{{ url_for('static', filename='images/screenshot1.png') }}" alt="Screenshot of website" /></li>
+            <li>Click on <strong>Windows</strong> to download the application.</li>
+            <li>Once the application is downloaded, open it and log in to your IM30 account.</li>
+            <li>For AD (Alliance Duel) Points:
+                <ul>
+                    <li>Go to the message in the game with the system-sent ranks.</li>
+                    <li>Only R4/R5 members can see the full list of ranks for AD points.</li>
+                </ul>
+            </li>
+            <li>For Player Information:
+                <ul>
+                    <li>Go to the profile of any player, click on Info, and also on More Info.</li>
+                    <li>This will save the information in the log file.</li>
+                </ul>
+            </li>
+            <li>To retrieve the log file:
+                <ul>
+                    <li>Navigate to <code>C:\Users\yourname\AppData\LocalLow\im30\Last Fortress\Log</code>.</li>
+                    <li>If AppData is hidden, type it manually in the explorer address bar.</li>
+                    <li>Copy and save your log file, and you’re ready to extract the data!</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section class="buttons">
+        <h3>Click below to choose what to extract:</h3>
+        <button onclick="window.open('alliance-duel-points', '_blank')">Alliance Duel Points</button>
+        <button onclick="window.open('player-info', '_blank')">Player Information</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Last Fortress Tool | All Rights Reserved</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
