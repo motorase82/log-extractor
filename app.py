@@ -5,7 +5,7 @@ import pandas as pd
 from flask import Flask, request, jsonify, render_template, send_file
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 UPLOAD_FOLDER = "uploads"
 RESULTS_FOLDER = "results"
