@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance Duel Points Extractor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+</head>
+<body>
+    <h1>Alliance Duel Points Extractor</h1>
+    <form id="upload-form" enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="extraction_type" value="alliance_duel_points">
+        <div id="drop-area">
+            <p>Drag & Drop or upload from PC or Memory Log File Here</p>
+            <input type="file" id="file-input" name="file" accept=".txt" style="display: none;">
+        </div>
+        <section class="buttons">
+            <button type="button" onclick="document.getElementById('file-input').click()">Choose File</button>
+            <button type="submit">Extract Data</button>
+        </section>
+    </form>
+
+    <!-- Hidden Buttons to show after data is extracted -->
+<div id="download-buttons" style="display:none;">
+   <!--<button id="download-player-info-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/player-info'">Download Player Info Spreadsheet</button>--> <!--Optional CSV file download-->
+    <button id="download-alliance-duel-points-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
+</div>
+
+    <h2>Extracted Data</h2>
+    <table id="data-table" class="display" border="1">
+        <thead>
+            <tr>
+                <th>Player Name</th>
+                <th>Alliance Duel Points</th>
+            </tr>
+        </thead>
+        <tbody id="data-table-body"></tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static', filename='alliance_duel_points_script.js') }}"></script>
+</body>
+</html>
