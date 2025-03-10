@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     row.game_id,
                     row.cp,
                     row.sex,
-                    row.like_count,
                     row.army_kill
                 ]);
             });
