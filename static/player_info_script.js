@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dataTable.row.add([
                     row.player_name,
                     row.game_id,
+                    row.game_id,
                     row.cp,
                     row.sex,
                     row.like_count,
