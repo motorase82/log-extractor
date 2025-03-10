@@ -47,11 +47,9 @@ def extract_player_info(file_path):
 
                 player_info = {
                     "player_name": player_name,
-                    "game_id": data.get("sharecode", ""),
-                    "rank": player.get('rank', 0),
+                    "game_id": data.get("sharecode", ""
                     "cp": data.get("power", ""),
                     "sex": "Male" if data.get("sex") == 1 else "Female" if data.get("sex") == 2 else "Unknown",
-                    "like_count": data.get("likeNum", ""),
                     "army_kill": data.get("armyKill", "0")
                 }
                 player_data.append(player_info)
