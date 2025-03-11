@@ -1,0 +1,154 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    margin: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Button Styles */
+button {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #447848;
+}
+
+/* Secondary Blue Button */
+button.secondary {
+    background-color: #008CBA; /* Blue background */
+    color: white;
+}
+
+button.secondary:hover {
+    background-color: #007B9A; /* Darker blue for hover */
+}
+
+/* Small Buttons */
+button.small {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.small:hover {
+    background-color: #ddd;
+}
+
+/* Small & Blue Buttons */
+button.small-blue {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #008CBA;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.small-blue:hover {
+    background-color: #143675;
+}
+
+/* Disable Button */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Table Header Styling */
+th {
+    background-color: #555;  /* Dark background */
+    color: white;  /* White text */
+    padding: 10px 15px;  /* Padding for better spacing */
+    text-align: left;  /* Align text to the left */
+    font-weight: bold;  /* Make header text bold */
+}
+
+/* Table Row Hover Effect */
+tr:hover {
+    background-color: #f5f5f5;  /* Light grey background on hover */
+}
+
+/* Search and Table Margins */
+#data-table_wrapper .dataTables_filter {
+    margin-bottom: 20px;  /* Adjust the space between search and the table */
+}
+
+/* Space Above the Table */
+table#data-table {
+    margin-top: 20px;  /* Adjust the space above the table */
+}
+
+/* Space Above the Table Header */
+th {
+    margin-top: 10px; /* Adjust the space above the headers */
+}
+
+/* Prevent Column Wrapping */
+#data-table th, #data-table td {
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides any overflowing text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) if the text overflows */
+}
+
+/* Apply auto-width to specific columns */
+#data-table td:nth-child(n+7), #data-table th:nth-child(n+7) {
+    width: auto; /* Automatically adjusts width based on the content */
+    max-width: 200px; /* Optionally set a max-width to prevent excessive column stretching */
+}
+
+/* Prevent Columns from Wrapping into Two Lines */
+#data-table td, #data-table th {
+    word-wrap: normal; /* Disable word wrapping */
+}
+
+/* Styling for Screenshots */
+.screenshot {
+    max-width: 300px;
+    margin: 10px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Lists Styling */
+ol, ul {
+    line-height: 1.8;
+}
+
+/* Table Column Adjustments */
+table#data-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
