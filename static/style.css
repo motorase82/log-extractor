@@ -116,7 +116,7 @@ th {
 
 /* Prevent Column Wrapping */
 #data-table th, #data-table td {
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: ; /* Prevents text from wrapping */
     overflow: hidden; /* Hides any overflowing text */
     text-overflow: ellipsis; /* Adds ellipsis (...) if the text overflows */
 }
