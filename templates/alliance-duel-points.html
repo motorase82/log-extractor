@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
 <body>
-    <h1>Alliance Duel Points Extractor</h1>
+    <h1>Alliance Duel Points Extractor 
+        <button onclick="window.location.href='https://log-extractor-wess.onrender.com/'" class="back-button">Back to Homepage</button>
+    </h1>
     <form id="upload-form" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="extraction_type" value="alliance_duel_points">
         <div id="drop-area">
@@ -22,10 +24,9 @@
     </form>
 
     <!-- Hidden Buttons to show after data is extracted -->
-<div id="download-buttons" style="display:none;">
-   <!--<button id="download-player-info-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/player-info'">Download Player Info Spreadsheet</button>--> <!--Optional CSV file download-->
-    <button id="download-alliance-duel-points-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
-</div>
+    <div id="download-buttons" style="display:none;">
+        <button id="download-alliance-duel-points-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
+    </div>
 
     <h2>Extracted Data</h2>
     <table id="data-table" class="display" border="1">
