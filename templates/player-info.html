@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Info Extractor</title>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
 <body>
-    <h1>Player Info Extractor</h1>
+    <h1>Player Info Extractor
+	<button onclick="window.location.href='https://log-extractor-wess.onrender.com/'" class="back-button">Back to Homepage</button>
+	</h1>
     <form id="upload-form" enctype="multipart/form-data" method="POST">
         <div id="drop-area">
             <p>Drag & Drop or upload from PC or Memory Log File Here</p>
