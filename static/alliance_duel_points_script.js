@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let interval = setInterval(() => {
             if (progress < 90) {
                 progressBar.value = progress;
-                progress += 5;
+                progress += 10;
             }
-        }, 500); // Simulate 5% increase every 0.5 seconds
+        }, 500); // Simulate 5% increase every 0.25 seconds
 
         // Send the data for extraction
         fetch("/upload", {
