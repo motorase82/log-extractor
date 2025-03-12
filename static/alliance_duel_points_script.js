@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let dropArea = document.getElementById("drop-area");
     let fileInput = document.getElementById("file-input");
     let uploadForm = document.getElementById("upload-form");
+    let progressContainer = document.getElementById("progress-container");
+    let progressBar = document.getElementById("progress-bar");
+    let progressText = document.querySelector("#progress-container p"); // Select the progress text
 
     // Prevent default behavior (stop file from opening)
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -48,17 +51,42 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("file", fileInput.files[0]);
         formData.append("extraction_type", "alliance-duel-points");  // Specify extraction type
 
+        // Show progress bar
+        progressContainer.style.display = "block";
+        progressBar.value = 0; // Reset progress bar
+        progressText.textContent = "Processing, please wait..."; // Set initial text
+
+        // Simulate progress animation (you can remove this later if the server supports real-time progress)
+        let progress = 0;
+        let interval = setInterval(() => {
+            if (progress < 90) {
+                progressBar.value = progress;
+                progress += 5;
+            }
+        }, 500); // Simulate 5% increase every 0.5 seconds
+
+        // Send the data for extraction
         fetch("/upload", {
             method: "POST",
             body: formData
         })
         .then(response => response.json())
         .then(data => {
+            // Stop progress animation once the data is successfully processed
+            clearInterval(interval);
+            progressBar.value = 100; // Set it to 100% when done
+
+            // Change the progress text
+            progressText.textContent = "Processing 100%"; // Update text to "Processing 100%"
+
             alert(data.message);  // Display custom success message
 
             // Show the download buttons after data is extracted
             document.getElementById("download-buttons").style.display = "block";
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            clearInterval(interval); // Stop progress animation if there is an error
+            console.error("Error during fetch:", error); // Handle fetch errors
+        });
     });
 });

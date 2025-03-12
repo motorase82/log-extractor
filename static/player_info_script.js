@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let uploadForm = document.getElementById("upload-form");
     let progressContainer = document.getElementById("progress-container");
     let progressBar = document.getElementById("progress-bar");
+    let progressText = document.querySelector("#progress-container p"); // Select the progress text
 
     // Prevent default behavior (stop file from opening)
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show progress bar
         progressContainer.style.display = "block";
         progressBar.value = 0; // Reset progress bar
+        progressText.textContent = "Processing, please wait..."; // Set initial text
 
         // Simulate progress animation (you can remove this later if the server supports real-time progress)
         let progress = 0;
@@ -72,6 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Stop progress animation once the data is successfully processed
             clearInterval(interval);
             progressBar.value = 100; // Set it to 100% when done
+
+            // Change the progress text
+            progressText.textContent = "Processing 100%"; // Update text to "Processing 100%"
+
             alert(data.message);  // Display custom success message
 
             // Show the download buttons after data is extracted
