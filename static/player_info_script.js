@@ -2,26 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let dropArea = document.getElementById("drop-area");
     let fileInput = document.getElementById("file-input");
     let uploadForm = document.getElementById("upload-form");
-    let dataTableBody = document.getElementById("data-table-body");
-
-    // Initialize DataTable only once (on the first load)
-    let dataTable = null;
-
-    // Initialize DataTable if it is not already initialized
-    function initializeDataTable() {
-        if (!$.fn.dataTable.isDataTable('#data-table')) {
-            dataTable = $('#data-table').DataTable({
-                "ordering": true,
-                "paging": true,
-                "searching": true,  // Enable searching within all columns
-                "lengthChange": true,  // Allow the "Show entries" dropdown
-                "pageLength": 90  // Default entries per page
-            });
-        }
-    }
-
-    // Call initialize only once when the page loads
-    initializeDataTable();
 
     // Prevent default behavior (stop file from opening)
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -67,46 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let formData = new FormData();
         formData.append("file", fileInput.files[0]);
 
-        // Debugging: Log the formData to see what is being sent
-        console.log("Sending form data:", formData);
-
-        fetch("/upload", { // Ensure this endpoint is correct
+        // Send the data for extraction
+        fetch("/upload", {
             method: "POST",
             body: formData
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Response received:", data);  // Check what response is returned
             alert(data.message);  // Display custom success message
-
-            // Dynamically add data to the table without reinitializing DataTable
-            let tableBody = document.getElementById("data-table-body");
-
-            // Clear previous data in the table
-            dataTable.clear();
-
-            // Loop through the extracted data and add rows
-            data.data.forEach(row => {
-                dataTable.row.add([
-                    row.player_name,
-                    row.game_id,
-                    row.cp,
-                    row.sex,
-					row.army_kill,
-					row.APC,
-					row.total_battles,
-					row.battle_victories,
-                    row.unit_defeated_enemies,
-                    row.unit_defeated_yours,
-                    row.unit_treated_yours,
-                    row.zombie_defeated
-					
-					
-                ]);
-            });
-
-            // Draw the table after adding new data
-            dataTable.draw();
 
             // Show the download buttons after data is extracted
             document.getElementById("download-buttons").style.display = "block";
