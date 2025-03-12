@@ -58,18 +58,19 @@ def extract_player_info(file_path):
                 view_points = {item["viewPoint"]: item["value"] for item in data.get("info", [])}
 
                 player_info = {
-                    "player_name": player_name,
-                    "game_id": data.get("sharecode", ""),
-                    "cp": data.get("power", ""),
-                    "sex": "Male" if data.get("sex") == 1 else "Female" if data.get("sex") == 2 else "Unknown",
-                    "army_kill": data.get("armyKill", "0"),
+                    "User ID": data.get("uid", ""),
+                    "Player Name": player_name,
+                    "Game ID": data.get("sharecode", ""),
+                    "CP": data.get("power", ""),
+                    "Sex": "Male" if data.get("sex") == 1 else "Female" if data.get("sex") == 2 else "Unknown",
+                    "Amry Kill": data.get("armyKill", "0"),
                     "APC": apc_mapping.get(data.get("personalFormationVehicleId", "0"), "None"),  # Map APC ID to Name
-                    "total_battles": view_points.get("1,0", "0"),
-                    "battle_victories": view_points.get("1,1", "0"),
-                    "unit_defeated_enemies": view_points.get("1,2", "0"),
-                    "unit_defeated_yours": view_points.get("1,3", "0"),
-                    "unit_treated_yours": view_points.get("1,4", "0"),
-                    "zombie_defeated": view_points.get("1,5", "0")
+                    "Total Battles": view_points.get("1,0", "0"),
+                    "Battle Victories": view_points.get("1,1", "0"),
+                    "Unit Defeated enemies": view_points.get("1,2", "0"),
+                    "Unit Defeated yours": view_points.get("1,3", "0"),
+                    "Unit Treated yours": view_points.get("1,4", "0"),
+                    "Zombie defeated": view_points.get("1,5", "0")
                     
                 }
                 player_data.append(player_info)
