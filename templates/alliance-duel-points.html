@@ -25,22 +25,14 @@
 
     <!-- Hidden Buttons to show after data is extracted -->
     <div id="download-buttons" style="display:none;">
-        <button id="download-alliance-duel-points-excel" class="small-blue" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
+	<h3>Spreadsheet ready! You can now download the file. Click the button bellow!</h3>
+        <button id="download-alliance-duel-points-excel" class="shake" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
     </div>
-
-    <h2>Extracted Data</h2>
-    <table id="data-table" class="display" border="1">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Alliance Duel Points</th>
-            </tr>
-        </thead>
-        <tbody id="data-table-body"></tbody>
-    </table>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="{{ url_for('static', filename='alliance_duel_points_script.js') }}"></script>
+	 <footer>
+        <p>&copy; 2025 Last Fortress Tool | All Rights Reserved</p>
+    </footer>
 </body>
 </html>
