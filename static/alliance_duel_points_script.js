@@ -2,26 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let dropArea = document.getElementById("drop-area");
     let fileInput = document.getElementById("file-input");
     let uploadForm = document.getElementById("upload-form");
-    let dataTableBody = document.getElementById("data-table-body");
-
-    // Initialize DataTable only once (on the first load)
-    let dataTable = null;
-
-    // Initialize DataTable if it is not already initialized
-    function initializeDataTable() {
-        if (!$.fn.dataTable.isDataTable('#data-table')) {
-            dataTable = $('#data-table').DataTable({
-                "ordering": true,
-                "paging": true,
-                "searching": true,  // Enable searching within all columns
-                "lengthChange": true,  // Allow the "Show entries" dropdown
-                "pageLength": 90  // Default entries per page
-            });
-        }
-    }
-
-    // Call initialize only once when the page loads
-    initializeDataTable();
 
     // Prevent default behavior (stop file from opening)
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -76,28 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             alert(data.message);  // Display custom success message
 
-            // Dynamically add data to the table without reinitializing DataTable
-            let tableBody = document.getElementById("data-table-body");
-
-            // Clear previous data in the table
-            dataTable.clear();
-
-            // Loop through the extracted data and add rows
-            data.data.forEach(row => {
-                dataTable.row.add([  
-                    row["Player Name"],
-                    row["Alliance Duel Points"],
-                    row["Power"],
-                    row["Rank"],
-                    row["Main City Lv"]
-                ]);
-            });
-
-            // Draw the table after adding new data
-            dataTable.draw();
-
             // Show the download buttons after data is extracted
-            document.getElementById("download-buttons").style.display = "block"; // Make the buttons visible
+            document.getElementById("download-buttons").style.display = "block";
         })
         .catch(error => console.error("Error:", error));
     });
