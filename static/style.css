@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #2058C0;
     color: white;
     padding: 20px;
     text-align: center;
@@ -25,20 +25,22 @@ footer {
 
 /* Button Styles */
 button {
-    background-color: #4CAF50; /* Green background */
+    background-color: #2058C0; /* Green background */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+	margin: 5px; 
 }
 
 button:hover {
-    background-color: #447848;
+    background-color: #2F779D;
+	transform: scale(1.05); /* Slight scale effect on hover */
 }
 
 /* Secondary Blue Button */
@@ -117,8 +119,8 @@ th {
 /* Prevent Column Wrapping */
 #data-table th, #data-table td {
     white-space: ; /* Prevents text from wrapping */
-    overflow: hidden; /* Hides any overflowing text */
-    text-overflow: ellipsis; /* Adds ellipsis (...) if the text overflows */
+    overflow:  /* Hides any overflowing text */
+    text-overflow: ; /* Adds ellipsis (...) if the text overflows */
 }
 
 /* Apply auto-width to specific columns */
