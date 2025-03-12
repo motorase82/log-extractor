@@ -22,12 +22,18 @@
             <button type="submit">Extract Data</button>
         </section>
     </form>
+<!-- Progress Bar (initially hidden) -->
+<div id="progress-container" style="display:none; margin-top: 20px;">
+    <p>Processing, please wait...</p>
+    <progress id="progress-bar" value="0" max="100" style="width: 100%;"></progress>
+</div>
 
     <!-- Hidden Buttons to show after data is extracted -->
     <div id="download-buttons" style="display:none;">
 	<h3>Spreadsheet ready! You can now download the file. Click the button bellow!</h3>
         <button id="download-alliance-duel-points-excel" class="shake" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
     </div>
+	<p></p>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="{{ url_for('static', filename='alliance_duel_points_script.js') }}"></script>
