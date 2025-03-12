@@ -177,3 +177,19 @@ button.shake {
     100% { transform: translateY(0); }
 }
 
+#progress-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+}
+
+#progress-container p {
+    text-align: center;
+    font-weight: bold;
+}

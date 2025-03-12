@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let dropArea = document.getElementById("drop-area");
     let fileInput = document.getElementById("file-input");
     let uploadForm = document.getElementById("upload-form");
+    let progressContainer = document.getElementById("progress-container");
+    let progressBar = document.getElementById("progress-bar");
 
     // Prevent default behavior (stop file from opening)
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -47,6 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let formData = new FormData();
         formData.append("file", fileInput.files[0]);
 
+        // Show progress bar
+        progressContainer.style.display = "block";
+        progressBar.value = 0; // Reset progress bar
+
         // Send the data for extraction
         fetch("/upload", {
             method: "POST",
@@ -54,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
+            // Hide progress bar when file is processed
+            progressContainer.style.display = "none";
             alert(data.message);  // Display custom success message
 
             // Show the download buttons after data is extracted
