@@ -53,6 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
         progressContainer.style.display = "block";
         progressBar.value = 0; // Reset progress bar
 
+        // Simulate progress animation (you can remove this later if the server supports real-time progress)
+        let progress = 0;
+        let interval = setInterval(() => {
+            if (progress < 90) {
+                progressBar.value = progress;
+                progress += 5;
+            }
+        }, 500); // Simulate 5% increase every 0.5 seconds
+
         // Send the data for extraction
         fetch("/upload", {
             method: "POST",
@@ -60,14 +69,16 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            // Hide progress bar when file is processed
-            progressContainer.style.display = "none";
+            // Stop progress animation once the data is successfully processed
+            clearInterval(interval);
+            progressBar.value = 100; // Set it to 100% when done
             alert(data.message);  // Display custom success message
 
             // Show the download buttons after data is extracted
             document.getElementById("download-buttons").style.display = "block";
         })
         .catch(error => {
+            clearInterval(interval); // Stop progress animation if there is an error
             console.error("Error during fetch:", error); // Handle fetch errors
         });
     });

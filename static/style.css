@@ -187,9 +187,24 @@ button.shake {
     height: 25px;
     background-color: #f3f3f3;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    animation: progressAnimation 2s ease-in-out infinite;
 }
 
 #progress-container p {
     text-align: center;
     font-weight: bold;
+}
+
+/* Progress bar animation */
+@keyframes progressAnimation {
+    0% {
+        background-color: #f3f3f3;
+    }
+    50% {
+        background-color: #4CAF50;
+    }
+    100% {
+        background-color: #f3f3f3;
+    }
 }
