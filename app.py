@@ -157,7 +157,8 @@ def extract_alliance_duel_points(file_path):
         for player in player_scores:
             name = player.get('name', 'Unknown')
             score = player.get('score', 0)
-            score_data.append({"Player Name": name, "Points": score})
+            uid = player.get('uid', 'Unknown UID')  # Extract the UID
+            score_data.append({"Player Name": name, "Points": score, "UID": uid})  # Add the UID to the dictionary
 
     except json.JSONDecodeError as e:
         print(f"Error parsing 'allPlayerScore' JSON: {e}")
@@ -209,7 +210,6 @@ def extract_alliance_duel_points(file_path):
     df.to_csv(csv_path, index=False)
 
     return df.to_dict(orient="records")
-
 
 # --------------------------- Download Routes for Player Info --------------------------- #
 @app.route("/download-excel/player-info", methods=["GET"])
