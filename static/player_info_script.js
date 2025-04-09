@@ -1,91 +1,109 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let dropArea = document.getElementById("drop-area");
-    let fileInput = document.getElementById("file-input");
-    let uploadForm = document.getElementById("upload-form");
-    let progressContainer = document.getElementById("progress-container");
-    let progressBar = document.getElementById("progress-bar");
-    let progressText = document.querySelector("#progress-container p"); // Select the progress text
+    const dropArea = document.getElementById("drop-area");
+    const fileInput = document.getElementById("file-selector");
+    const uploadForm = document.getElementById("upload-form");
+    const progressContainer = document.getElementById("progress-container");
+    const progressBar = document.getElementById("progress-bar");
+    const progressText = document.querySelector("#progress-container p");
 
-    // Prevent default behavior (stop file from opening)
+    // Highlight drag area
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
-        dropArea.addEventListener(eventName, function (e) {
+        dropArea.addEventListener(eventName, e => {
             e.preventDefault();
             e.stopPropagation();
         });
     });
 
-    // Highlight drag area when file is dragged over
-    dropArea.addEventListener("dragover", function () {
-        dropArea.classList.add("highlight");
-    });
+    dropArea.addEventListener("dragover", () => dropArea.classList.add("highlight"));
+    dropArea.addEventListener("dragleave", () => dropArea.classList.remove("highlight"));
 
-    dropArea.addEventListener("dragleave", function () {
-        dropArea.classList.remove("highlight");
-    });
-
-    // Handle dropped files
     dropArea.addEventListener("drop", function (e) {
-        let files = e.dataTransfer.files;
+        const files = e.dataTransfer.files;
         if (files.length > 0) {
-            fileInput.files = files;
-            changeMessageAfterFileUpload(); // Change message as soon as the file is dropped
-        }
+			fileInput.files = files;
+			document.querySelector('#drop-area p').textContent = `${files.length} screenshot(s) loaded.`;
+		} else {
+			alert("No screenshots detected in drop.");
+		}
+
     });
 
-    // Handle file input change event
     fileInput.addEventListener("change", function () {
-        console.log("File selected:", fileInput.files[0].name);
-        changeMessageAfterFileUpload(); // Change message when file is selected from file input
+        const count = fileInput.files.length;
+        document.querySelector('#drop-area p').textContent = `${count} screenshot(s) selected.`;
     });
 
-    // Function to change the message in drop area
-    function changeMessageAfterFileUpload() {
-        let dropAreaText = document.querySelector('#drop-area p');
-        dropAreaText.textContent = "Log File Uploaded! Press Extract Data button to extract the Data";
-    }
-
-    // Handle form submission
     uploadForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        let formData = new FormData();
-        formData.append("file", fileInput.files[0]);
 
-        // Show progress bar
+        const files = fileInput.files;
+        if (files.length === 0) {
+            alert("Please upload at least one screenshot.");
+            return;
+        }
+
+        const formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+			formData.append("screenshots", files[i]);
+		}
+
+
         progressContainer.style.display = "block";
-        progressBar.value = 0; // Reset progress bar
-        progressText.textContent = "Processing, please wait..."; // Set initial text
+        progressBar.value = 0;
+        progressText.textContent = "Processing, please wait...";
 
-        // Simulate progress animation (you can remove this later if the server supports real-time progress)
         let progress = 0;
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             if (progress < 90) {
                 progressBar.value = progress;
                 progress += 5;
             }
-        }, 500); // Simulate 5% increase every 0.5 seconds
+        }, 300);
 
-        // Send the data for extraction
-        fetch("/upload", {
+        fetch("/player-info", {
             method: "POST",
             body: formData
         })
         .then(response => response.json())
         .then(data => {
-            // Stop progress animation once the data is successfully processed
-            clearInterval(interval);
-            progressBar.value = 100; // Set it to 100% when done
+			clearInterval(interval);
+			progressBar.value = 100;
+			progressText.textContent = "Done!";
 
-            // Change the progress text
-            progressText.textContent = "Processing 100%"; // Update text to "Processing 100%"
+			if (data.error) {
+				alert("❌ " + data.error);
+				return;
+			}
 
-            alert(data.message);  // Display custom success message
+			// Show preview
+			const table = document.getElementById("preview-table");
+			table.innerHTML = ""; // Clear old data
+			const preview = document.getElementById("preview-section");
+			preview.style.display = "block";
 
-            // Show the download buttons after data is extracted
-            document.getElementById("download-buttons").style.display = "block";
+			const keys = Object.keys(data.data[0]);
+			const headerRow = table.insertRow();
+			keys.forEach(key => {
+				const th = document.createElement("th");
+				th.textContent = key;
+				headerRow.appendChild(th);
+			});
+
+			data.data.forEach(player => {
+				const row = table.insertRow();
+				keys.forEach(key => {
+					const cell = row.insertCell();
+					cell.textContent = player[key] || "";
+				});
+			});
+
+			document.getElementById("download-buttons").style.display = "block";
+		})
+
         })
         .catch(error => {
-            clearInterval(interval); // Stop progress animation if there is an error
-            console.error("Error during fetch:", error); // Handle fetch errors
+            clearInterval(interval);
+            console.error("❌ Error:", error);
+            alert("Something went wrong. Please try again.");
         });
     });
-});
