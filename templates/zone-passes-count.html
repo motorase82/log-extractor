@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alliance Duel Points Extractor</title>
+    <title>Zone Passes Count Extractor</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
 <body>
-    <h1>Alliance Duel Points Extractor 
+    <h1>Zone Passes Count Extractor 
         <button onclick="window.location.href='https://log-extractor-wess.onrender.com/'" class="back-button">Back to Homepage</button>
     </h1>
-    <form id="upload-form" enctype="multipart/form-data" method="POST">
-        <input type="hidden" name="extraction_type" value="alliance_duel_points">
-        <div id="drop-area">
-            <p>Drag & Drop or upload from PC or Memory Log File Here</p>
-            <input type="file" id="file-input" name="file" accept=".txt,.db" style="display: none;">
-        </div>
-        <section class="buttons">
-            <button type="button" onclick="document.getElementById('file-input').click()">Choose File</button>
-            <button type="submit">Extract Data</button>
-        </section>
-    </form>
+   <form id="upload-form" enctype="multipart/form-data" method="POST">
+    <input type="hidden" name="extraction_type" value="zone-passes-count">
+    <div id="drop-area">
+        <p>Drag & Drop or upload from PC or Memory Log File Here</p>
+        <input type="file" id="file-input" name="file" accept=".txt" style="display: none;">
+    </div>
+    <section class="buttons">
+        <button type="button" onclick="document.getElementById('file-input').click()">Choose File</button>
+        <button type="submit">Extract Data</button>
+    </section>
+</form>
+
 <!-- Progress Bar (initially hidden) -->
 <div id="progress-container" style="display:none; margin-top: 20px;">
     <p>Processing, please wait...</p>
@@ -31,12 +32,12 @@
     <!-- Hidden Buttons to show after data is extracted -->
     <div id="download-buttons" style="display:none;">
 	<h3>Spreadsheet ready! You can now download the file. Click the button bellow!</h3>
-        <button id="download-alliance-duel-points-excel" class="shake" type="button" onclick="window.location.href='/download-excel/alliance-duel-points'">Download Alliance Duel Points Spreadsheet</button>
+        <button id="download-zone-passes-count" class="shake" type="button" onclick="window.location.href='/download-excel/zone-passes-count'">Download Zone Passes Count Spreadsheet</button>
     </div>
 	<p></p>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="{{ url_for('static', filename='alliance_duel_points_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='zone_passes_count_script.js') }}"></script>
 	 <footer>
         <p>&copy; 2025 Last Fortress Tool | All Rights Reserved</p>
     </footer>

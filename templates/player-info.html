@@ -11,16 +11,32 @@
     <h1>Player Info Extractor
 	<button onclick="window.location.href='https://log-extractor-wess.onrender.com/'" class="back-button">Back to Homepage</button>
 	</h1>
-    <form id="upload-form" enctype="multipart/form-data" method="POST">
-        <div id="drop-area">
-            <p>Drag & Drop or upload from PC or Memory Log File Here</p>
-            <input type="file" id="file-input" name="file" accept=".txt" style="display: none;">
-        </div>
-        <section class="buttons">
-            <button type="button" onclick="document.getElementById('file-input').click()">Choose File</button>
-            <button type="submit">Extract Data</button>
-        </section>
-    </form>
+<form id="upload-form" enctype="multipart/form-data" method="POST">
+    <div id="drop-area">
+        <p>Upload one or both Commander Screenshots (Key Info & More Info)</p>
+
+        <!-- One input, allows selecting both files -->
+        <input
+			type="file"
+			id="file-selector"
+			name="screenshots"  
+			accept=".jpg,.jpeg,.png"
+			multiple
+			style="display: none;"
+		>
+
+    </div>
+
+    <section class="buttons">
+        <button type="button" onclick="document.getElementById('file-selector').click()">Choose Screenshot(s)</button>
+        <button type="submit">Extract Player Info</button>
+    </section>
+</form>
+<div id="preview-section" style="display:none;">
+  <h3>🧾 Preview Extracted Player Info</h3>
+  <table id="preview-table" border="1" cellpadding="5" cellspacing="0"></table>
+</div>
+
 <!-- Progress Bar (initially hidden) -->
 <div id="progress-container" style="display:none; margin-top: 20px;">
     <p>Processing, please wait...</p>
@@ -30,7 +46,7 @@
     <!-- Hidden Buttons to show after data is extracted -->
 <div id="download-buttons" style="display:none;">
     <h3>Spreadsheet ready! You can now download the file. Click the button below!</h3>
-    <button id="download-player-info-excel" type="button" class="shake" onclick="window.location.href='/download-excel/player-info'">
+    <button id="download-player-info-excel" type="button" class="shake" onclick="window.location.href='/download-excel/all-player-info'">
         Download Player Info Spreadsheet
     </button>
 </div>
