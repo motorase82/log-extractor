@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS Data Extractor - Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the LS Data Extractor!</h1>
+	    <p>Hello, guys! With this tool, you can easily extract the weekly Alliance Duel Points and Alliance player information for your alliance.</p>
+        <p>To extract the data, you will need to install the Last Fortress Windows Application. This will help you get an accurate information of Alliance Duel points. Follow these instructions to get started:</p>
+    </header>
+	<section class="instructions">
+	<h2>PLEASE change your login password!</h2>
+	<a href="/change-password" class="special-password-button">
+    <span class="pointer">👉</span>CHANGE PASSWORD <span> 🔒</span>
+	</a>
+	</section>
+    <section class="instructions">
+        <h2>How to Retrieve the Log File</h2>
+        <ol>
+            <li>Go to <a href="https://last-fortress.net/" target="_blank">https://last-fortress.net/</a></li>
+            <li>Look for: <img src="{{ url_for('static', filename='images/screenshot1.jpg') }}" alt="Screenshot of website" /></li>
+            <li>Click on <strong>Windows</strong> to download the application.</li>
+            <li>Once the application is downloaded, open it and install it. Then log in to your game account using your IM30 account or Google, depending on which service your account is synchronized with./li>
+            <li>For AD (Alliance Duel) Points:
+                <ul>
+                    <li>Go to the message/email in the game from system-sent with the final Alliance Duel (AD) points.</li>
+                    <li>Only R4/R5 members can see the full list of ranks for AD points.</li>
+                </ul>
+            </li>
+            <li>For Player Information:
+                <ul>
+                    <li>Go to the profile of any player, click on Info, and also on More Info and make screenshots of both pages</li>
+                </ul>
+            </li>
+            <li>To retrieve the log file:
+                <ul>
+                    <li>Navigate to <code style="color: red; font-size: 16px;">C:\Users\yourname\AppData\LocalLow\im30\Last Fortress\DB\. Here it will be a folder with your Uid (a long code containing numbers)</code>.</li>
+                    <li>If AppData is hidden, type it manually in the explorer address bar.</li>
+					<li>Go inside that folder with the Uid</li>
+                    <li>Copy and save your database file caleed gameData, and you’re ready to extract the data!</li>
+					<li>This will contain your Alliance Duel points, Players name, Alliance Rank.</li>
+					<li>VERY IMPORTANT!!! Please keep only one (the last alliance duel email), as this procedure will not be able to extract the data if you have for example the email with the alliance duel from the week before</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-message">
+      {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+    <section class="button">
+        <h3>Click below to choose what to extract:</h3>
+        <button type="button" onclick="window.open('alliance-duel-points', '_blank')">Alliance Duel Points</button>
+        <button type="button" onclick="window.open('player-info', '_blank')">Player Information</button>
+		<button type="button" onclick="window.open('zone-passes-count', '_blank')">Zone Passes Count</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Last Fortress Tool | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

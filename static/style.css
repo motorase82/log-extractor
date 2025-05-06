@@ -1,0 +1,266 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #2058C0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    margin: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Disable Button */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* Styling for Screenshots */
+.screenshot {
+    max-width: 300px;
+    margin: 10px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Lists Styling */
+ol, ul {
+    line-height: 1.8;
+}
+
+/* Table Column Adjustments */
+table#data-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/*Button Style*/
+
+button {
+    background: linear-gradient(to right, #2058C0, #409EFF); /* Gradient background */
+    border: none;
+    color: white;
+    padding: 8px 26px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	margin: 5px;
+	margin-bottom: 5px;
+}
+
+/* Hover Effect */
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Active (Click) Effect */
+button:active {
+    transform: scale(0.98);
+    filter: brightness(0.9);
+}
+
+/* Button Shake Animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Apply shake animation when button has class 'shake' */
+button.shake {
+    animation: shake 1s infinite;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #4CAF50; /* Color of the arrow */
+    margin: 10px auto; /* To center the arrow */
+}
+
+.arrow-shake {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #4CAF50; /* Change color of the arrow to match the button */
+    margin: 10px auto; /* Center the arrow below the button */
+    animation: shake 0.5s ease infinite;
+}
+
+/* Bouncing arrow */
+.bouncing-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 15px solid #4CAF50;
+    margin: 20px auto;
+    animation: bounce 0.8s ease infinite;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Finger pointing right arrow */
+.finger-pointer-right {
+    position: relative;
+    display: inline-block;
+    padding: 15px 32px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.finger-pointer-right:hover::after {
+    content: "👉";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    font-size: 30px;
+    animation: pointing 1s infinite;
+}
+
+@keyframes pointing {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Finger pointing arrow down */
+.finger-pointer-down {
+    position: relative;
+    margin: 10px auto;
+    font-size: 40px; /* Size of the pointing finger */
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+}
+
+#progress-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    animation: progressAnimation 2s ease-in-out infinite;
+}
+
+#progress-container p {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Progress bar animation */
+@keyframes progressAnimation {
+    0% {
+        background-color: #f3f3f3;
+    }
+    50% {
+        background-color: #4CAF50;
+    }
+    100% {
+        background-color: #f3f3f3;
+    }
+}
+#upload-status {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+.special-password-button {
+    background: linear-gradient(to right, #1e90ff, #4facfe);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s;
+}
+
+.special-password-button:hover {
+    transform: scale(1.05);
+}
+
+.special-password-button .pointer {
+    font-size: 18px;
+}
+/* Password Field Style */
+
+.form-group {
+    margin-bottom: 15px;
+    width: 250px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px 35px 8px 8px; /* space for the eye on the right */
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+}

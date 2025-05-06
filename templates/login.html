@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Last Fortress Tool</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Login to Your Account</h1>
+	<form method="POST" action="/login" class="login-form">
+
+		<div class="form-group">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+		</div>
+
+		<div class="form-group">
+			<label for="password">Password:</label>
+			<div class="password-wrapper">
+				<input type="password" id="password" name="password" required>
+				<span class="toggle-password" onclick="togglePassword()">👁️</span>
+			</div>
+		</div>
+
+		<button type="submit">Login</button>
+	</form>
+
+	<script>
+	function togglePassword() {
+		const passwordField = document.getElementById("password");
+		passwordField.type = passwordField.type === "password" ? "text" : "password";
+	}
+	</script>
+    {% if error %}
+    <p style="color:red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2025 Last Fortress Tool | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
